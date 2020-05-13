@@ -56,18 +56,21 @@ $ipnumber = $_GET['ip'];
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script>
-  $(document).ready(function () {
+  $(document).ready(function () {ù
+    // chiamo ajax, ho usato un servizio che mi permette di caricare un json su un github e lo rende disponibile all'esterno per chiamate di test
     $.ajax({
       url: 'https://my-json-server.typicode.com/ahmidi/jsontest/profiles',
-      data: 'ip=' + '<?php print $ipnumber?>',
+      data: 'ip=' + '<?php print $ipnumber?>',// <--- qui l'ip del player
       success: function(response){
-
+        //verifico se la risposta ha contenuto
         if (response.length > 0)
         {
+          // creo una stringa da stampare nel div risultato
           var result = "ip:" + response[0].ip +"<br>\
           nome: "+ response[0].nome +"<br>\
           punti: "+ response[0].punti +"\
           ";
+          //con jquery seleziono l'elemento con id result e scrivo l'html che ho preparato
           $('#result').html(result);
         }
       },
